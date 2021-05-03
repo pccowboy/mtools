@@ -1,5 +1,6 @@
 from collections import namedtuple
 from operator import itemgetter
+import json
 
 from .base_section import BaseSection
 from mtools.util import OrderedDict
@@ -142,5 +143,7 @@ class QuerySection(BaseSection):
         table_rows = sorted(table_rows,
                             key=itemgetter(self.mloginfo.args['sort']),
                             reverse=reverse)
-        print_table(table_rows, titles, uppercase_headers=False)
+        json_object = json.dumps(table_rows, indent = 4)
+        print(json_object)
+        #print_table(table_rows, titles, uppercase_headers=False)
         print('')
